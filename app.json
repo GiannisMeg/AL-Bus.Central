@@ -1,0 +1,30 @@
+{
+	"id": "cba301ca-c1d2-44f6-9899-81b140f032e9",
+	"name": "ALChickenManagement",
+	"publisher": "ChickenManagement",
+	"version": "1.0.0.0",
+	"brief": "",
+	"description": "",
+	"privacyStatement": "",
+	"EULA": "",
+	"help": "",
+	"url": "",
+	"logo": "",
+	"dependencies": [],
+	"screenshots": [],
+	"platform": "1.0.0.0",
+	"application": "21.0.0.0",
+	"idRanges": [
+		{
+			"from": 50100,
+			"to": 50149
+		}
+	],
+	"resourceExposurePolicy": {
+		"allowDebugging": true,
+		"allowDownloadingSource": true,
+		"includeSourceInSymbolFile": true
+	},
+	"runtime": "10.0",
+	"features": ["NoImplicitWith"]
+}
