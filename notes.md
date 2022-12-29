@@ -119,7 +119,11 @@ Tasks
 
 # To create a Role Center page, you need to set the PageType property to [RoleCenter]
 
-//
+// Statements 
+
+Whatever we assign in under Code[] variable automatically turn to upper case
+
+
 [ACTIONS]
 
 Actions are displayed at the top of each page
@@ -198,5 +202,49 @@ Be initialized
 
 -- [Protected-Variables] ; can be used to make variables accessible between tables and table extensions and between pages and page extensions
 
+[Fundamental-dataTypes] ;   Numeric - String - boolean - Date - Time - DataTime
+Numeric (Action - Integer - BigInteger- Decimal - Option - Char - Byte - Duration )
+String (Text - Code)
 
+// ACTION (OK - Cancer - LookupOK - LookupCancel -Yes - No - RunObject - RunSystem)
+
+[ComplexDataTypes] = BigText - BLOB - CodeUnit - DateFormula - File - Dialog - File - Fieldref - GUID - InStream and OutStream - KeyRef - PAge - Query - Record - RecordID - RecordRef - Report - System - TableFilter - Variant - List & Dictionary
+
+// The Record data type hold multiple values cause include multiple fields
+
+# The [#region] - [#endregion] directive is used to mark a block of code that you can expand or collapse
+
+---------------------- [FUNCTIONS] -------------------------
+
+// The build in functions called interaction functions
+
+The string functions are:
+
+- StrPos and IndexOf
+
+- CopyStr and Substring
+
+- SelectStr and Split
+
+- InsStr
+
+- StrLen and MaxStrLen
+
+- LowerCase, UpperCase, ToLower, and ToUpper
+
+- IncStr
+
+//Numeric functions
+
+- Round
+
+- Abs
+
+- Power
+
+- Random
+
+- Randomize
+
+// Array functions ; ArrayLen , CompressArray , CopyArray
 
