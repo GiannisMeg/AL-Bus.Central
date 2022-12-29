@@ -248,3 +248,12 @@ The string functions are:
 
 // Array functions ; ArrayLen , CompressArray , CopyArray
 
+
+# [Case-statements] you can compare it with [switch-statement]
+
+[forLoop] we dont use it that much in the businnes central only in the statistic fields
+
+# [Repeat..Until] is more often used when we have to work with records and loop for results
+
+<Main DIFF between while and repeat ; Repeat executes at list one.
+
