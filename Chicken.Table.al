@@ -112,10 +112,22 @@ table 50100 Chicken
     end;
     
     trigger OnDelete()
+    var 
+     EggProductionLine : Record "Product Line";
+     ChickenHasEggsErr: Label 'The Chicken %1 %2 has eggs, you can not delete it.',Comment = '%1 = Chicken No.; %2 = Chicken Description';
     begin
+        // EggProductionLine.DeleteAll();
+        //Clears the EggProductionLine variable
+        clear(EggProductionLine);
+        //Filters the EggProductionLine table on the current Chicken, using it's number
+        EggProductionLine.SetRange("Chicken No.",rec."No.");
+        // if its not Empty then generate an error
+        if not EggProductionLine.IsEmpty then
+        Error(ChickenHasEggsErr, Rec."No.",Rec.Description);
+     
+        exit;
         
     end;
-    
     trigger OnRename()
     begin
         

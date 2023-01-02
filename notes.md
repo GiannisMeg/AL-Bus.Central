@@ -88,7 +88,7 @@ Navigation Bar -- You define this area with an area(embedding) control in the pa
 Action Bar -- You can define the actions by using the three different area() controls that are described in the next section.
 
 [ActionBarAreaControl]
-area(creation) --  display an plus sign
+area(creation) -- display an plus sign
 
 area(processing) -- actions in the control will appear > you can group action by using group control (taget pages associated wiht work flow for processing documents such payments or sales)
 
@@ -119,10 +119,9 @@ Tasks
 
 # To create a Role Center page, you need to set the PageType property to [RoleCenter]
 
-// Statements 
+// Statements
 
 Whatever we assign in under Code[] variable automatically turn to upper case
-
 
 [ACTIONS]
 
@@ -132,13 +131,13 @@ Actions are displayed at the top of each page
 
 {DEFINE ACTIONS IN AL}
 
-- **Navigation** - Corresponds with the Navigate menu.
+-  **Navigation** - Corresponds with the Navigate menu.
 
-- **Creation** - Corresponds with the New Document menu in the Actions menu.
+-  **Creation** - Corresponds with the New Document menu in the Actions menu.
 
-- **Reporting** - Corresponds with the Report menu.
+-  **Reporting** - Corresponds with the Report menu.
 
-- **Processing** - Corresponds with the Process menu.
+-  **Processing** - Corresponds with the Process menu.
 
 [Promoted] property; Push action at the start of the bar // Promoted=true; PromotedCategory = category7;
 [PromotedCategory] ; has fixed values; -- New, Process, Report, and Category4 through Category20
@@ -147,8 +146,7 @@ Actions are displayed at the top of each page
 
 ActionProperties ; -ID -NAME -CAPTION -IMAGE(display an image in the actions)
 
-
-[OnAction] trigger ; open a page or run code when a user selects an action 
+[OnAction] trigger ; open a page or run code when a user selects an action
 [RunObject] ; same as OnAction trigger // runs the following objects
 Page
 
@@ -164,27 +162,23 @@ Codeunit
 (for example connect he customers card with the sales orders page)
 
 [RunPageMode]; witch mode the page you are running should open// VIEw - EDIT or CREATE
- [InsertAllowed] property is set to [No], running your page in Create mode won't work.
- [RunPageView] ; allows you to put a table filter on your page and to have a filtered result.
+[InsertAllowed] property is set to [No], running your page in Create mode won't work.
+[RunPageView] ; allows you to put a table filter on your page and to have a filtered result.
 
+STRUCTURE OF ACTIONS ; ACTIONS > AREA > (ACTIONS or GROUP or SEPARATORS)
 
- STRUCTURE OF ACTIONS ; ACTIONS > AREA > (ACTIONS or GROUP or SEPARATORS)
+[Importance] property ; value(promoted) ===> used for make visible the fields after a task is collapsed.
+value(additional) ===> show more / show less button
 
- [Importance] property ; value(promoted) ===> used for make visible the fields after a task is collapsed.
-                         value(additional) ===> show more / show less button
+[PROFILE-OBJECT] ; allows you to build an individual experience for each user profile
 
-[PROFILE-OBJECT] ;  allows you to build an individual experience for each user profile
-
-
-
-###                                          //////////// IMPORTANT CONCEPT AL ////////////////
-
+### //////////// IMPORTANT CONCEPT AL ////////////////
 
 identifiers = programming element
 variable = local data storage
- !! WE cant declare two variables with the same identifier
- !! When you are defining a variable by an identifier, the first character is preferably an underscore or a letter
- !! Start identifiers with PascalCase (first letter uppercase)
+!! WE cant declare two variables with the same identifier
+!! When you are defining a variable by an identifier, the first character is preferably an underscore or a letter
+!! Start identifiers with PascalCase (first letter uppercase)
 
 Variables need to have ;
 
@@ -196,13 +190,13 @@ Have a data type
 
 Be initialized
 
- -- [Rec]  gives access to the current record and [xRec] to the previous
+-- [Rec] gives access to the current record and [xRec] to the previous
 
- -- Declare multiple variables of the same type in the same line, using a comma to separate variable names.
+-- Declare multiple variables of the same type in the same line, using a comma to separate variable names.
 
 -- [Protected-Variables] ; can be used to make variables accessible between tables and table extensions and between pages and page extensions
 
-[Fundamental-dataTypes] ;   Numeric - String - boolean - Date - Time - DataTime
+[Fundamental-dataTypes] ; Numeric - String - boolean - Date - Time - DataTime
 Numeric (Action - Integer - BigInteger- Decimal - Option - Char - Byte - Duration )
 String (Text - Code)
 
@@ -220,34 +214,33 @@ String (Text - Code)
 
 The string functions are:
 
-- StrPos and IndexOf
+-  StrPos and IndexOf
 
-- CopyStr and Substring
+-  CopyStr and Substring
 
-- SelectStr and Split
+-  SelectStr and Split
 
-- InsStr
+-  InsStr
 
-- StrLen and MaxStrLen
+-  StrLen and MaxStrLen
 
-- LowerCase, UpperCase, ToLower, and ToUpper
+-  LowerCase, UpperCase, ToLower, and ToUpper
 
-- IncStr
+-  IncStr
 
 //Numeric functions
 
-- Round
+-  Round
 
-- Abs
+-  Abs
 
-- Power
+-  Power
 
-- Random
+-  Random
 
-- Randomize
+-  Randomize
 
 // Array functions ; ArrayLen , CompressArray , CopyArray
-
 
 # [Case-statements] you can compare it with [switch-statement]
 
@@ -257,3 +250,42 @@ The string functions are:
 
 <Main DIFF between while and repeat ; Repeat executes at list one.
 
+[DATA_MANIPULATION-REQ.]
+
+.FindFirst(); // Using to get 1 record
+.Find('-'); // old command
+//
+.FindLast(); // Using to get 1 record
+.Find('+'); // old command
+//
+.FindSet(); // Using to find multiple records in a loop
+//
+{example loop through multiple records}
+
+## Customer.FindSet();
+
+    repeat
+        Message('%1', Customer);
+     until Customer.Next()= 0;
+
+//
+
+# Mostly we use the FindFirst() and FindSet();
+
+## GET() works only by providing the PK and it has to be valid not guessing;
+
+## IN AL is no TRY/Catch but we can use an IF/ ELSE statement and else works like catch
+
+{Example of looping all customers from Atlanta}
+
+Clear(Customer);
+Customer.SetRange(City, 'Atlanta');
+if Customer.FindSet() then
+repeat
+Message('%1' , Customer.Name); // foronly the name other wise only Customer
+// only the first three letters of every customer
+Message('%1' , copyStr(Customer.Name,1,3));
+Message('%1' , Customer.Name.Substring(1,3));// only in AL not in NAV
+Until Customer.Next()= 0;
+
+## By adding a [@] in the filter section we make the search case insensitive
