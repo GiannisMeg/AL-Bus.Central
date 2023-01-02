@@ -53,5 +53,15 @@ table 50102 "Egg Type"
     begin
         
     end;
+
+    procedure InsertEggType(EggTypeCode:Code[20]; EggTypeDescription: Text[50])
+    var
+    EggType: Record "Egg Type";
+    begin
+        Clear(EggType);
+        EggType.Code := EggTypeCode;
+        EggType.Description:= EggTypeDescription;
+        EggType.Insert();
+    end;
     
 }
